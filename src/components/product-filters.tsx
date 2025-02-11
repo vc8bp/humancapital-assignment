@@ -3,8 +3,8 @@ import { Slider } from '@/components/ui/slider';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from '@/components/ui/sheet';
-import { FilterState } from '@/lib/types';
+import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { FilterState, SortOption } from '@/lib/types';
 
 interface ProductFiltersProps {
     categories: string[];
@@ -68,7 +68,7 @@ export function ProductFilters({ categories, filters, onFilterChange, maxPrice }
                         </div>
                     </div>
                     <Select
-                        onValueChange={(value) => onFilterChange({ ...filters, sort: value })}
+                        onValueChange={(value: SortOption) => onFilterChange({ ...filters, sort: value })}
                         defaultValue={filters.sort}
                     >
                         <SelectTrigger className="w-full">

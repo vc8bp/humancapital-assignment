@@ -3,11 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Star } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
-export const revalidate = 3600; 
+export const revalidate = 3600;
 
-export default async function ProductPage({ params }: { params: { id: string } }) {
-  const product = await getProduct(params.id);
+export default async function ProductPage({ params }: { params: Promise<{ id: string}>}) {
+  const { id } = await params
+  if(!id) return redirect("/")
+  const product = await getProduct(id);
 
   return (
     <main className="container mx-auto px-6 py-10">
